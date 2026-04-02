@@ -1,31 +1,28 @@
 import streamlit as st
 import google.generativeai as genai
 
-# --- API CONFIGURATION ---
-# Replace YOUR_API_KEY with your real key from Google AI Studio
-genai.configure(api_key="YOUR_API_KEY")
+# 1. إعداد الساروت (عوض AIzaSy... بالساروت ديالك الحقيقي)
+API_KEY = "AIzaSy..." 
+
+genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="Security Guide", page_icon="🛡️")
+# 2. إعدادات الصفحة (العنوان والأيقونة)
+st.set_page_config(page_title="مرشد الأمان", page_icon="🛡️")
 
-# --- UI CONTENT ---
-st.markdown("<h1 style='text-align: center; color: red;'>🛡️ Security Guide</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>Suspicion Radar</h3>", unsafe_allow_html=True)
+# 3. واجهة المستخدم بالدارجة
+st.markdown("<h1 style='text-align: center; color: red;'>🛡️ مرشد الأمان</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'>🔍 رادار الشك</h3>", unsafe_allow_html=True)
 
-user_input = st.text_area("Paste the link or message here:")
+st.write("### صيفط ليا أي رابط أو رسالة شاك فيها، وأنا نحللها ليك ونقوليك واش نصابة ولا آمنة.")
 
-# --- LOGIC ---
-if st.button("Analyze Now"):
+# خانة إدخال النص
+user_input = st.text_area("كوبي الرابط أو الرسالة هنا:", placeholder="مثلاً: جاني ميساج فيه ربحتي جائزة...")
+
+# 4. منطق التحليل
+if st.button("حلل دابا 🛡️"):
     if user_input:
-        with st.spinner('Analyzing...'):
+        with st.spinner('جاري الفحص... تسنى شوية'):
             try:
-                # Prompting Gemini to respond in Moroccan Darija
-                prompt = f"Analyze if this is a scam or safe. Explain why in Moroccan Darija: {user_input}"
-                response = model.generate_content(prompt)
-                st.subheader("Result:")
-                st.write(response.text)
-            except Exception as e:
-                st.error("Error: Check your API Key configuration.")
-    else:
-        st.warning("Please paste something first.")
+                # طلب التحليل بالدارجة المغربية بشكل صريح
+                prompt = f"Analyze strictly in Moroccan Darija if the following content is a scam or safe. Explain the risks
