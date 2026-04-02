@@ -1,37 +1,26 @@
 import streamlit as st
 import google.generativeai as genai
 
-# --- API CONFIG ---
-# حط الساروت ديالك بلاصة AIza...
+# 1. إعداد الساروت (بدل AIza... بالساروت ديالك)
 API_KEY = "حط_هنا_API_KEY_ديالك"
 
 genai.configure(api_key=API_KEY)
+
+# استخدام موديل فلاش السريع جداً
 model = genai.GenerativeModel('gemini-1.5-flash')
 
-# --- UI SETUP ---
+# 2. تحسين أداء الصفحة
 st.set_page_config(page_title="مرشد الأمان", page_icon="🛡️")
 
-st.markdown("<h1 style='text-align: center; color: red;'>🛡️ مرشد الأمان</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center;'>🔍 رادار الشك</h3>", unsafe_allow_html=True)
+# ستايل احترافي وبسيط
+st.markdown("<h1 style='text-align: center; color: #FF4B4B;'>🛡️ مرشد الأمان</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>تحليل فوري وسريع للروابط والميساجات</p>", unsafe_allow_html=True)
 
-st.write("### صيفط ليا أي رابط أو رسالة شاك فيها، وأنا نحللها ليك بالدارجة.")
+# 3. واجهة الإدخال
+user_input = st.text_area("حط النص هنا:", height=100, placeholder="انسخ الرابط أو الرسالة هنا...")
 
-user_input = st.text_area("كوبي النص هنا:", placeholder="مثلاً: جاني ميساج بلي ربحت...")
-
-# --- LOGIC ---
-if st.button("حلل دابا 🛡️"):
+# 4. زر التحليل السريع
+if st.button("تحليل سريع ⚡"):
     if user_input:
         with st.spinner('جاري الفحص...'):
-            try:
-                # هاد السطر هو اللي كان فيه الغلط، دابا راه مقاد
-                prompt = f"Analyze strictly in Moroccan Darija if this is a scam or safe: {user_input}"
-                response = model.generate_content(prompt)
-                st.subheader("النتيجة:")
-                st.info(response.text)
-            except Exception as e:
-                st.error("كاين مشكل فـ API Key، تأكد واش حطيتيه صحيح.")
-    else:
-        st.warning("عفاك دخل شي نص أولا.")
-
-st.markdown("---")
-st.caption("تم التطوير بواسطة علاء الدين")
+            try
